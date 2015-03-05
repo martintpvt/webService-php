@@ -39,6 +39,13 @@
 		'',
 		'',
 		array(array('ref'=>'SOAP-ENC:arrayType', 'wsdl:arrayType'=>'tns:Resultado[]')));
+
+	$server->wsdl->addComplexType( 'Coneccion',
+		'complexType',
+		'struct',
+		'all',
+		'',
+		array('album'=>array('name'=>'album', 'type'=>'xsd:string')));
 	//Termina declaracion de array
 
 	//Inicia ws_sumaDosNumeros
@@ -85,6 +92,28 @@
 		return $result;
 	}
 	//Termina ws_prueba
+
+	//Inicia ws_sacarAlbum
+	$server->register('ws_sacarAlbum',
+		array('cancion'=>'xsd:string'), //input parameters
+		array('album'=>'xsd:string'), //output parameters
+		$ns, //Namespace
+		"$ns#ws_sacarAlbum", //SOAP action
+		'rpc', //style
+		'encoded', //use
+		'WS Sacar Album'); //Documentation
+
+	function ws_sacarAlbum($cancion){
+		return new soapval('return', 'xsd:string', sacarAlbum($cancion));
+	}
+
+	function sacarAlbum($cancion){
+		$Objfunciones = new funciones();
+
+		$album = $Objfunciones->sacarAlbum($cancion);
+		return $album;
+	}
+	//Termina ws_sacarAlbum
 
 	//Service the methods
 	if ( !isset( $HTTP_RAW_POST_DATA ) ){

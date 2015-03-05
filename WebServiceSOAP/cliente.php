@@ -1,12 +1,13 @@
 <?php
 
 	require_once('lib/nusoap.php');
-	$wsdl = "http://localhost/WebServiceSOAP/server.php?wsdl";
+	$wsdl = "http://localhost/webService-php/WebServiceSOAP/server.php?wsdl";
 
 	$client = new nusoap_client($wsdl, true);
 
 	//$result = $client->call('ws_prueba', array('mensaje'=>'Enviando un mensaje...'));
-	$result = $client->call('ws_sumaDosNumeros', array('valorUno'=>30, 'valorDos'=>19));
+	//$result = $client->call('ws_sumaDosNumeros', array('valorUno'=>30, 'valorDos'=>19));
+	$result = $client->call('ws_sacarAlbum', array('cancion' => "Don't Go"));
 
 	if($client->fault){
 		echo '<h2>Fault</h2><pre>';

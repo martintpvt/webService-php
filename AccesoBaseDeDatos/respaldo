@@ -1,9 +1,11 @@
-require_once('lib/nusoap.php');
-	$wsdl = "http://localhost/webService-php/AccesoBaseDeDatos/server.php?wsdl";
-
+<?php
+	require_once('lib/nusoap.php');
+	$wsdl = "http://localhost/pedidos/server.php?wsdl";
+	
 	$client = new nusoap_client($wsdl, true);
 
-	$result = $client->call('ws_conectar', array());
+	$result = $client->call('ws_conectar', array('nombre' => 'Martin', 'apellido'=>'Almeida', 'email'=>'martin_almeida@outlook.com'));
+	$result1 = $client->call('ws_conectar', array('nombre' => 'Nicolas', 'apellido'=>'Gachet', 'email'=>'mnalmeida@udlanet.ec'));
 
 	if($client->fault){
 		echo '<h2>Fault</h2><pre>';
@@ -21,3 +23,4 @@ require_once('lib/nusoap.php');
 			echo '</pre>';
 		}
 	}
+?>

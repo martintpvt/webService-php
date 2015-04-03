@@ -23,34 +23,27 @@
 	//Parametros de entrada
 
 	//Inicia la declaracion de array de restultados (este array se puede usar en todas las funciones ya que es un array volatil)
-	$server->wsdl->addComplexType(
-		'Resultado',
-		'complexType',
-		'struct',
-		'all',
-		'',
-		array()
-		);
+	
 	//Termina declaracion de array
 
 	//Inicia ws_conectar
 	$server->register('ws_conectar',
-		array(), //input parameters
-		array('result'=>'xsd:string'), //output parameters
+		array('nombre' => 'xsd:string', 'apellido' => 'xsd:string', 'email' => 'xsd:string'), //input parameters
+		array('resultado' => 'xsd:string'), //output parameters
 		$ns, //Namespace
 		"$ns#ws_conectar", //SOAP action
 		'rpc', //style
 		'encoded', //use
 		'Conecta a una base de datos'); //Documentation
 
-	function ws_conectar(){
-		return new soapval('return', 'xsd:string', conectar());
+	function ws_conectar($nombre, $apellido, $email){
+		return new soapval('return', 'xsd:string', conectar($nombre, $apellido, $email));
 	}
 
-	function conectar(){
+	function conectar($nombre, $apellido, $email){
 		$Objfunciones = new funcion();
 
-		$result = $Objfunciones->conectar();
+		$result = $Objfunciones->conectar($nombre, $apellido, $email);
 		return $result;
 	}
 

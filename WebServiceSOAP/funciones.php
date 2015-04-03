@@ -9,13 +9,13 @@ class funciones{
 	//Funcion ejemplo array
 	function prueba($mensaje){
 		//Arreglo
-		$arrit["arreglo"][0] = "uno";
-		$arrit["arreglo"][1] = "dos";
+		$array["arreglo"][0] = "uno";
+		$array["arreglo"][1] = "dos";
 		//Mensaje
-		$msg["msg"] = mensaje;
+		$msg["msg"] = $mensaje;
 
 		$resultado[0] = $msg;
-		$resultado[1] = $arrit;
+		$resultado[1] = $array;
 
 		//Arreglo con mensaje y arreglo de restultados
 		return $resultado;

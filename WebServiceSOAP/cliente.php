@@ -5,7 +5,7 @@
 
 	$client = new nusoap_client($wsdl, true);
 
-	$result = $client->call('ws_prueba', array('mensaje'=>'Enviando un mensaje...'));
+	$result = $client->call('ws_prueba', array('mensaje'=>'Yo envio este mensaje'));
 	//$result = $client->call('ws_sumaDosNumeros', array('valorUno'=>30, 'valorDos'=>19));
 
 	if($client->fault){
